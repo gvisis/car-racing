@@ -19,7 +19,6 @@ public class CarRacing {
                     cars[j] = j + 1;
                     int carMoves = carRandomMove(10);
                     carTotalMove[j] = carTotalMove[j] + carMoves;
-//                    System.out.printf("Car %d moves by: %d; Total move: %d\n", cars[j], carMoves, carTotalMove[j]);
                     if (carTotalMove[j] >= distanceToReach){
                         currentDistance = carTotalMove[j];
                         for (int k = 0; k < cars.length; k++){
@@ -29,8 +28,6 @@ public class CarRacing {
                         return;
                     }
                 }
-//                System.out.println("---- Round ends ----");
-
             }
             if (i == cars.length){
                 i = 0;
