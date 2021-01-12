@@ -29,9 +29,6 @@ public class CarRacing {
                     }
                 }
             }
-            if (i == cars.length){
-                i = 0;
-            }
         }
     }
 }
