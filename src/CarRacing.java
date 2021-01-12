@@ -8,27 +8,45 @@ public class CarRacing {
     public static void main(String[] args) {
         int[] cars = new int[8];
         int[] carTotalMove = new int[cars.length];
-        int distance = 150;
-        for (int i = 0; i < cars.length; i++) {
-            cars[i] = i + 1;
-            int carMoves = 0;
-            for (int j = 0; j < cars.length; j++) {
-                carMoves = carRandomMove(10);
-                carTotalMove[j] = carTotalMove[j] + carMoves;
-                System.out.printf("Car %d total moves: %d\n", cars[i], carTotalMove[j]);
+        int distanceToReach = 1000;
+        int currentDistance = 0;
+
+        while (currentDistance <= distanceToReach) {
+            int i;
+            for (i = 0; i < cars.length; i++) {
+                cars[i] = i + 1;
+                for (int j = 0; j < cars.length; j++) {
+                    cars[j] = j + 1;
+                    int carMoves = carRandomMove(10);
+                    carTotalMove[j] = carTotalMove[j] + carMoves;
+//                    System.out.printf("Car %d moves by: %d; Total move: %d\n", cars[j], carMoves, carTotalMove[j]);
+                    if (carTotalMove[j] >= distanceToReach){
+                        currentDistance = carTotalMove[j];
+                        for (int k = 0; k < cars.length; k++){
+                            System.out.printf("Car %d drove: %d km\n", k+1, carTotalMove[k]);
+                        }
+                        System.out.printf("Car %d won the game by reaching %d km first! \n", cars[j], currentDistance);
+                        return;
+                    }
+                }
+//                System.out.println("---- Round ends ----");
+
             }
-            System.out.printf("Car %d moves by: %d\n", cars[i], carMoves);
+            if (i == cars.length){
+                i = 0;
+            }
         }
     }
 }
 
-//i = 0 , i maziau uz 8
-//    j = 0; j < 8
-
-// pavaziuoti gali nuo 1-10 imtinai .
-// iteracijos metu masina pavaziuoja po random  skaiciu;
+// Kiekvieno ciklo metu turi pavaziuoti atstuma nuo 1-10 (random);
 // tada tikrinam ar kuri masina nuvaziavo 1000km ;
-// sekancia iteracija masina pavaziavo po random skaiciu
-// nuvaziavus kas 100km parodyti masinu nuvaziuota atstuma;
-// vel tikrinti ar kuri nors pavaziavo 1000km
-// Bent vienai masinai kirtus finiso linija ( pasiekus skaiciu 10 ir daugiau)
+// kai kazkuris pasiekia finiso linijos skaiciu, padeti ta skaiciu i kita int
+
+// EXTRA: jei nors viena masina pasiekia 100km ar 200km ir t.t. atspausdinti tarpinius rezultatus;
+
+// Bent vienai masinai kirtus finiso linija ( pasiekus skaiciu 10 ir daugiau) baigiasi lenktynes
+// Baigus lenktynes, surusiuoti masinytes nuvaziuoto kelio MAZEJIMO tvarka.
+
+// kas 100km isspausdinti nuvaziuota atstuma;
+
