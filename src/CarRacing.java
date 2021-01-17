@@ -19,25 +19,51 @@ public class CarRacing {
 
     public static void main(String[] args) {
         int[] cars = new int[8];
-        int[] carTotalMove = new int[cars.length];
         int distanceToReach = 1000;
+        int interm = 100;
+        boolean isRacing = true;
 
-        while (true) {
-            int j;
-            for (j = 0; j < cars.length; j++) {
-                cars[j] = j + 1;
-                carTotalMove[j] = carTotalMove[j] + randomMoveCarBy(13);
+        while (isRacing) {
+            for (int i = 0; i < cars.length; i++) {
+                cars[i] += randomMoveCarBy(10);
+            }
 
-                // Check if car reached the finish line
-                if (carTotalMove[j] >= distanceToReach) {
-                    System.out.printf("Car %d won the game by reaching %d km first! \n", cars[j],
-                            carTotalMove[j]);
+            // destytojo kodas
+            boolean printInterm = false;
+
+            int intermWinner = 0;
+            int intermWinnerKm = 0;
+
+            for (int i = 0; i < cars.length; i++) {
+                if (cars[i] > intermWinnerKm) {
+                    intermWinner = i + 1;
+                    intermWinnerKm = cars[i];
+                }
+                if (cars[i] >= interm) {
+                    printInterm = true;
+                    interm += 100;
+                }
+            }
+            if (printInterm) {
+                for (int i = 0; i < cars.length; i++) {
+                    System.out.print(cars[i] + "\t");
+                }
+                System.out.println();
+                System.out.println("Pirmauja: " + intermWinner + " nuvaziavo " + intermWinnerKm);
+            }
+
+            // Check if car reached the finish line
+
+            for (int i = 0; i < cars.length; i++) {
+                if (cars[i] >= distanceToReach) {
+                    System.out.printf("Car %d won the game by reaching %d km first! \n", i + 1,
+                            cars[i]);
 
                     // Sort car distances
-                    sortCarDistancesDesc(carTotalMove);
-                    return;
+                    sortCarDistancesDesc(cars);
+                    isRacing = false;
+                    break;
                 }
-
             }
         }
     }
