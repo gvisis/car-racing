@@ -15,7 +15,7 @@ public class CarRacing {
                     masinos[j].name = tempName;
                 }
             }
-            System.out.printf("%d. %s distance: %d km\n", i+1, masinos[i].name, masinos[i].distance);
+            System.out.printf("%d. %s distance: %d km\n", i + 1, masinos[i].name, masinos[i].distance);
         }
     }
 
@@ -61,7 +61,7 @@ public class CarRacing {
                     System.out.print(racingCar[i].getName() + " " + racingCar[i].getDistance() + " | ");
                 }
                 System.out.println();
-                System.out.println("Leader: " + intermWinner + " distance " + intermWinnerKm );
+                System.out.println("Leader: " + intermWinner + " distance " + intermWinnerKm);
                 System.out.println("-------------------");
             }
 
@@ -73,11 +73,11 @@ public class CarRacing {
                             distanceToReach);
 
                     // Sort car distances
-                    sortCarDistancesDesc(racingCar);
                     isRacing = false;
                     break;
                 }
             }
         }
+        sortCarDistancesDesc(racingCar);
     }
 }

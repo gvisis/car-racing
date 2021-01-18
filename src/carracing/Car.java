@@ -24,10 +24,6 @@ public class Car {
         return this.distance;
     }
 
-    public int getCurrentSpeed() {
-        return this.currentSpeed;
-    }
-
     // Methods
     public void accelerate() {
         //  accelerates from 1 to 10
